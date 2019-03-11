@@ -1,13 +1,12 @@
 /**
- *
  * Copyright 2015 Kamran Zafar
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,40 +15,37 @@
  */
 package org.xeustechnologies.jcl.web;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.xeustechnologies.jcl.context.XmlContextLoader;
 
 /**
- * This class is used in web applications to load the JCL context from XML file.
- * 
+ * 用于 web applications 从xml文件中加载 JCL context
+ *
  * @author Kamran
- * 
  */
 public class JclContextLoaderListener implements ServletContextListener {
     private static final String JCL_CONTEXT = "jcl-context";
     protected XmlContextLoader contextLoader;
 
     /**
-     * Destroys the context
-     * 
-     * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
+     * 初始化
      */
-    public void contextDestroyed(ServletContextEvent sce) {
-        contextLoader.unloadContext();
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
+        String config = context.getInitParameter(JCL_CONTEXT);
+
+        contextLoader = new XmlContextLoader(config);
+        contextLoader.addPathResolver(new WebAppPathResolver(context));
+        contextLoader.loadContext();
     }
 
     /**
-     * The context is initialised from xml on web application's deploy-time
-     * 
-     * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+     * Destroys the context
      */
-    public void contextInitialized(ServletContextEvent sce) {
-        String jclConfig = sce.getServletContext().getInitParameter( JCL_CONTEXT );
-
-        contextLoader = new XmlContextLoader( jclConfig );
-        contextLoader.addPathResolver( new WebAppPathResolver( sce.getServletContext() ) );
-        contextLoader.loadContext();
+    public void contextDestroyed(ServletContextEvent sce) {
+        contextLoader.unloadContext();
     }
 }

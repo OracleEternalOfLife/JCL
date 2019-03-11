@@ -29,8 +29,7 @@ import org.slf4j.LoggerFactory;
 import org.xeustechnologies.jcl.utils.PathResolver;
 
 /**
- * Resolves path to jar files and folder in a web application. The path must
- * starts with <b>webapp:</b>
+ * 解析webapp中的jar. PATH 应以webapp:开头</b>
  *
  * @author Kamran
  */

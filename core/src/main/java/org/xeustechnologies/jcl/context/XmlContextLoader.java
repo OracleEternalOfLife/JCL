@@ -41,11 +41,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 /**
- * The class loads the JclContext from XML file. See the documentation and
- * schema for more details on how to write the JCL context xml.
+ * 从xml文件加载JCL context
  *
  * @author Kamran
- *
  */
 public class XmlContextLoader implements JclContextLoader {
     private static final String CLASSPATH = "classpath:";
@@ -84,45 +82,37 @@ public class XmlContextLoader implements JclContextLoader {
     }
 
     /**
-     * Loads the JCL context from XML file
-     *
-     * @see org.xeustechnologies.jcl.context.JclContextLoader#loadContext()
+     * 从xml文件加载JCL context
      */
     public void loadContext() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(false);
         factory.setNamespaceAware(true);
-
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XML_SCHEMA_LANG);
 
+        ClassLoader classLoader = getClass().getClassLoader();
         try {
-            factory.setSchema(schemaFactory.newSchema(new Source[]{new StreamSource(getClass().getClassLoader()
-                    .getResourceAsStream(JCL_CONTEXT_SCHEMA))}));
+            Source[] schemas = {new StreamSource(classLoader.getResourceAsStream(JCL_CONTEXT_SCHEMA))};
+            factory.setSchema(schemaFactory.newSchema(schemas));
         } catch (SAXException e) {
             throw new JclContextException(e);
         }
 
         try {
+            Document d;
             DocumentBuilder builder = factory.newDocumentBuilder();
-
-            Document d = null;
-
             if (file.startsWith(CLASSPATH))
-                d = builder.parse(getClass().getClassLoader().getResourceAsStream(file.split(CLASSPATH)[1]));
+                d = builder.parse(classLoader.getResourceAsStream(file.split(CLASSPATH)[1]));
             else {
                 d = builder.parse(file);
             }
 
-            NodeList nl = d.getElementsByTagName(ELEMENT_JCL);
-            for (int i = 0; i < nl.getLength(); i++) {
-                Node n = nl.item(i);
-
+            NodeList jclNode = d.getElementsByTagName(ELEMENT_JCL);
+            for (int i = 0; i < jclNode.getLength(); i++) {
+                Node n = jclNode.item(i);
                 String name = n.getAttributes().getNamedItem(ATTRIBUTE_NAME).getNodeValue();
-
                 JarClassLoader jcl = new JarClassLoader();
-
                 NodeList config = n.getChildNodes();
-
                 for (int j = 0; j < config.getLength(); j++) {
                     Node c = config.item(j);
                     if (c.getNodeName().equals(ELEMENT_LOADERS)) {
@@ -133,7 +123,6 @@ public class XmlContextLoader implements JclContextLoader {
                 }
 
                 jclContext.addJcl(name, jcl);
-
                 logger.debug("JarClassLoader[{}] loaded into context.", name);
             }
 
@@ -152,8 +141,6 @@ public class XmlContextLoader implements JclContextLoader {
 
     /**
      * Unloads the context
-     *
-     * @see org.xeustechnologies.jcl.context.JclContextLoader#unloadContext()
      */
     public void unloadContext() {
         JclContext.destroy();
