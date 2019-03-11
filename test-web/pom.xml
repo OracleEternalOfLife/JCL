@@ -22,11 +22,11 @@
             <artifactId>jcl-spring</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.xeustechnologies</groupId>
-            <artifactId>jcl-web</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.xeustechnologies</groupId>-->
+            <!--<artifactId>jcl-web</artifactId>-->
+            <!--<version>${project.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.xeustechnologies</groupId>
             <artifactId>test-jcl</artifactId>

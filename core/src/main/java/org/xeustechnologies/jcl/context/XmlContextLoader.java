@@ -115,9 +115,9 @@ public class XmlContextLoader implements JclContextLoader {
                 NodeList config = n.getChildNodes();
                 for (int j = 0; j < config.getLength(); j++) {
                     Node c = config.item(j);
-                    if (c.getNodeName().equals(ELEMENT_LOADERS)) {
+                    if (ELEMENT_LOADERS.equals(c.getNodeName())) {
                         processLoaders(jcl, c);
-                    } else if (c.getNodeName().equals(ELEMENT_SOURCES)) {
+                    } else if (ELEMENT_SOURCES.equals(c.getNodeName())) {
                         processSources(jcl, c);
                     }
                 }

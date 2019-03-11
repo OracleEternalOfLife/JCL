@@ -1,10 +1,9 @@
 package org.xeustechnologies.jcl.test;
 
-import java.io.Serializable;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xeustechnologies.jcl.test.TestInterface;
+
+import java.io.Serializable;
 
 public class Test implements Serializable, TestInterface {
 

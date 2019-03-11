@@ -15,11 +15,11 @@
  */
 package org.xeustechnologies.jcl.web;
 
+import org.xeustechnologies.jcl.context.XmlContextLoader;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import org.xeustechnologies.jcl.context.XmlContextLoader;
 
 /**
  * 用于 web applications 从xml文件中加载 JCL context

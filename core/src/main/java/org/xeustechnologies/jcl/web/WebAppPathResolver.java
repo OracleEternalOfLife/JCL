@@ -16,17 +16,16 @@
 
 package org.xeustechnologies.jcl.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xeustechnologies.jcl.utils.PathResolver;
+
+import javax.servlet.ServletContext;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
-import javax.servlet.ServletContext;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xeustechnologies.jcl.utils.PathResolver;
 
 /**
  * 解析webapp中的jar. PATH 应以webapp:开头</b>
@@ -48,7 +47,7 @@ public class WebAppPathResolver implements PathResolver {
     /**
      * 加载webapp下的jar包
      *
-     * @see org.xeustechnologies.jcl.utils.PathResolver#resolvePath(java.lang.String)
+     * @see PathResolver#resolvePath(String)
      */
     public InputStream[] resolvePath(String path) {
         if (path.startsWith(WEB_APP)) {
@@ -61,21 +60,20 @@ public class WebAppPathResolver implements PathResolver {
 
             //如果是文件夹，返回全部jar
             Set<String> paths = servletContext.getResourcePaths(webpath);
-            if (paths.size() > 0) {
-                Iterator<String> itr = paths.iterator();
-                List<InputStream> streams = new ArrayList();
-                while (itr.hasNext()) {
-                    String source = itr.next();
-                    if (isJar(source)) {
-                        InputStream stream = servletContext.getResourceAsStream(source);
-                        if (stream != null) {
-                            logger.debug("Found jar: {}", source);
-                            streams.add(stream);
-                        }
+            List<InputStream> streams = new ArrayList();
+
+            Iterator<String> itr = paths.iterator();
+            while (itr.hasNext()) {
+                String source = itr.next();
+                if (isJar(source)) {
+                    InputStream stream = servletContext.getResourceAsStream(source);
+                    if (stream != null) {
+                        logger.debug("Found jar: {}", source);
+                        streams.add(stream);
                     }
                 }
-                return streams.toArray(new InputStream[streams.size()]);
             }
+            return streams.toArray(new InputStream[streams.size()]);
         }
 
         return null;
