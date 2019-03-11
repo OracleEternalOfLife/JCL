@@ -190,7 +190,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <aggregate>true</aggregate>
+                            <!--<aggregate>true</aggregate>-->
                         </configuration>
                     </plugin>
                     <plugin>

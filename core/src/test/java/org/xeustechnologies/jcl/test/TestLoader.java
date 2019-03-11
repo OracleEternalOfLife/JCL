@@ -1,9 +1,11 @@
 package org.xeustechnologies.jcl.test;
 
+import org.xeustechnologies.jcl.loader.ProxyClassLoader;
+
 import java.io.InputStream;
 import java.net.URL;
 
-public class TestLoader extends org.xeustechnologies.jcl.ProxyClassLoader {
+public class TestLoader extends ProxyClassLoader {
 
     @Override
     public Class loadClass(String className, boolean resolveIt) {

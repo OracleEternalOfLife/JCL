@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.xeustechnologies.jcl;
+package org.xeustechnologies.jcl.loader;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -24,12 +24,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.jar.JarEntry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xeustechnologies.jcl.exception.JclException;
 import org.xeustechnologies.jcl.exception.ResourceNotFoundException;
+import org.xeustechnologies.jcl.resource.ClasspathResources;
 
 /**
  * Reads the class bytes from jar files and other resources using

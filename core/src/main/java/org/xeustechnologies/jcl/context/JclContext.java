@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.xeustechnologies.jcl.JarClassLoader;
+import org.xeustechnologies.jcl.loader.JarClassLoader;
 import org.xeustechnologies.jcl.exception.JclContextException;
 
 /**

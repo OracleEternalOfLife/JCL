@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.xeustechnologies.jcl;
+package org.xeustechnologies.jcl.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

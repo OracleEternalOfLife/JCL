@@ -21,7 +21,7 @@ public class SpringTest extends TestCase {
         // Bean loaded with parent CL
         Object test2 = appContext.getBean( "test2" );
 
-        assertEquals( "org.xeustechnologies.jcl.JarClassLoader", test1.getClass().getClassLoader().getClass().getName() );
+        assertEquals( "org.xeustechnologies.jcl.loader.JarClassLoader", test1.getClass().getClassLoader().getClass().getName() );
         assertEquals( "sun.misc.Launcher$AppClassLoader", test2.getClass().getClassLoader().getClass().getName() );
     }
 }

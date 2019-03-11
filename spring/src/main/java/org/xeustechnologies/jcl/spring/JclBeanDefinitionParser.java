@@ -24,7 +24,7 @@ import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.xml.BeanDefinitionParser;
 import org.springframework.beans.factory.xml.ParserContext;
 import org.w3c.dom.Element;
-import org.xeustechnologies.jcl.JarClassLoader;
+import org.xeustechnologies.jcl.loader.JarClassLoader;
 
 /**
  * @author Kamran Zafar

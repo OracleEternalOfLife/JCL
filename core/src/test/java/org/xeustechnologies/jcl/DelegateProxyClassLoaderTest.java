@@ -1,6 +1,8 @@
 package org.xeustechnologies.jcl;
 
 import org.junit.Test;
+import org.xeustechnologies.jcl.loader.DelegateProxyClassLoader;
+import org.xeustechnologies.jcl.loader.JarClassLoader;
 import org.xeustechnologies.jcl.sample.Test1;
 
 import static org.junit.Assert.*;

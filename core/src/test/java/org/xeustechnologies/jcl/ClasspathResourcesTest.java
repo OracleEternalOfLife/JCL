@@ -1,8 +1,8 @@
 package org.xeustechnologies.jcl;
 
 import org.junit.Test;
+import org.xeustechnologies.jcl.resource.ClasspathResources;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.xeustechnologies.jcl;
+package org.xeustechnologies.jcl.loader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xeustechnologies.jcl.exception.JclException;
 import org.xeustechnologies.jcl.exception.ResourceNotFoundException;
-import org.xeustechnologies.jcl.utils.Utils;
+import org.xeustechnologies.jcl.utils.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,16 +30,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Abstract class loader that can load classes from different resources
+ * 抽象classloader
  *
  * @author Kamran Zafar
  */
 @SuppressWarnings("unchecked")
 public abstract class AbstractClassLoader extends ClassLoader {
 
-    // we could use concurrent sorted set like ConcurrentSkipListSet here instead, which would be automatically sorted
-    // and wouldn't require the lock.
-    // But that was added in 1.6, and according to Maven we're targeting 1.5+.
     /**
      * Note that all iterations over this list *must* synchronize on it first!
      */
@@ -51,19 +48,11 @@ public abstract class AbstractClassLoader extends ClassLoader {
     private final ProxyClassLoader threadLoader = new ThreadContextLoader();
     private final ProxyClassLoader osgiBootLoader = new OsgiBootLoader();
 
-    /**
-     * Build a new instance of AbstractClassLoader.java.
-     *
-     * @param parent parent class loader
-     */
     public AbstractClassLoader(ClassLoader parent) {
         super(parent);
         addDefaultLoader();
     }
 
-    /**
-     * No arguments constructor
-     */
     public AbstractClassLoader() {
         super();
         addDefaultLoader();
@@ -547,7 +536,7 @@ public abstract class AbstractClassLoader extends ClassLoader {
 
             if (bootPkgs != null) {
                 for (String bc : bootPkgs) {
-                    Pattern pat = Pattern.compile(Utils.wildcardToRegex(bc), Pattern.CASE_INSENSITIVE);
+                    Pattern pat = Pattern.compile(StringUtils.wildcardToRegex(bc), Pattern.CASE_INSENSITIVE);
 
                     Matcher matcher = pat.matcher(resourceName);
                     if (matcher.find()) {

@@ -23,7 +23,7 @@ package org.xeustechnologies.jcl.utils;
  * @author Kamran Zafar
  * 
  */
-public class Utils {
+public class StringUtils {
     /**
      * Converts wildcard to regular expression
      * 

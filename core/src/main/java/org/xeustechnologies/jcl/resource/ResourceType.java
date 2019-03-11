@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.xeustechnologies.jcl;
+package org.xeustechnologies.jcl.resource;
 
 /**
  * Enumeration for different resource types

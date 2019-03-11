@@ -13,9 +13,12 @@ import org.xeustechnologies.jcl.context.JclContext;
 import org.xeustechnologies.jcl.context.JclContextLoader;
 import org.xeustechnologies.jcl.context.XmlContextLoader;
 import org.xeustechnologies.jcl.exception.JclContextException;
+import org.xeustechnologies.jcl.loader.AbstractClassLoader;
+import org.xeustechnologies.jcl.loader.JarClassLoader;
 import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
 import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
 import org.xeustechnologies.jcl.test.TestInterface;
+import org.xeustechnologies.jcl.utils.JclUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -188,7 +191,7 @@ public class LoadTest extends TestCase {
             testObj = jc.loadClass( "org.xeustechnologies.jcl.test.Test" ).newInstance();
 
             // Must have been loaded by a CL other than JCL-Local
-            Assert.assertFalse( testObj.getClass().getClassLoader().equals( "org.xeustechnologies.jcl.JarClassLoader" ) );
+            Assert.assertFalse( testObj.getClass().getClassLoader().equals( "org.xeustechnologies.jcl.loader.JarClassLoader" ) );
             return;
         } catch (ClassNotFoundException cnfe) {
             // expected if not found
@@ -274,7 +277,7 @@ public class LoadTest extends TestCase {
         // Test context
         Object testObj = JclContext.get().loadClass( "org.xeustechnologies.jcl.test.Test" ).newInstance();
         assertNotNull( testObj );
-        assertEquals( "org.xeustechnologies.jcl.JarClassLoader", testObj.getClass().getClassLoader().getClass()
+        assertEquals( "org.xeustechnologies.jcl.loader.JarClassLoader", testObj.getClass().getClassLoader().getClass()
                 .getName() );
     }
 }

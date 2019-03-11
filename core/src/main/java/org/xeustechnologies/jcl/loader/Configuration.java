@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.xeustechnologies.jcl;
+package org.xeustechnologies.jcl.loader;
 
 /**
  * General configuration using System properties

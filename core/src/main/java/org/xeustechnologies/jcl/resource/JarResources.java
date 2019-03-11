@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.xeustechnologies.jcl;
+package org.xeustechnologies.jcl.resource;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -25,15 +25,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xeustechnologies.jcl.loader.Configuration;
+import org.xeustechnologies.jcl.JclJarEntry;
 import org.xeustechnologies.jcl.exception.JclException;
 
 /**

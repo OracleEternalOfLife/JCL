@@ -17,7 +17,7 @@
 
 package org.xeustechnologies.jcl.exception;
 
-import org.xeustechnologies.jcl.ResourceType;
+import org.xeustechnologies.jcl.resource.ResourceType;
 
 /**
  * @author Kamran Zafar

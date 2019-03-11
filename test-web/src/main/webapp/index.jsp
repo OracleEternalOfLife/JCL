@@ -1,5 +1,6 @@
 <%@ page import="org.xeustechnologies.jcl.*" %>
 <%@ page import="org.xeustechnologies.jcl.context.*" %>
+<%@ page import="org.xeustechnologies.jcl.loader.JarClassLoader" %>
 <%
 	JarClassLoader jcl=JclContext.get("jcl3");
 	JclObjectFactory factory = JclObjectFactory.getInstance();

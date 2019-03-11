@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.xeustechnologies.jcl;
+package org.xeustechnologies.jcl.loader;
 
 import java.io.InputStream;
 import java.net.URL;

@@ -18,7 +18,7 @@ package org.xeustechnologies.jcl.context;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xeustechnologies.jcl.JarClassLoader;
+import org.xeustechnologies.jcl.loader.JarClassLoader;
 
 /**
  * This class is builds the context from a single JCL instance.
